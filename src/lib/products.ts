@@ -274,7 +274,7 @@ export const PRODUCTS: Product[] = [
     { newArrival: true, popular: 49 }),
 
   // ─────────────────────────── NAILS ───────────────────────────
-  make("n01", "Glossy Press-On Nails — Almond (24 pcs)", "nails", "Press-on Nails", 160, 220, 4.6, 38, [img("presson", 4)],
+  make("n01", "Glossy Press-On Nails — Almond (24 pcs)", "nails", "Press-on Nails", 160, 220, 4.6, 38, [img("presson", 2), img("presson", 4)],
     "Salon-style almond nails at home in under 10 minutes.",
     "24 glossy press-on nails in a soft almond shape, with 12 sizes for a snug fit. The kit includes adhesive tabs and a mini file so you can get a salon look without the salon bill.",
     { material: "ABS artificial nails, adhesive tabs included", size: "24 nails, 12 sizes", color: "Soft nude gloss", care: "Apply on clean, dry nails for the longest wear." },

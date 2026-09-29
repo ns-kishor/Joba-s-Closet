@@ -15,7 +15,15 @@ import {
   Truck,
 } from "lucide-react";
 import { Link } from "@/lib/router";
-import { CATEGORIES, featuredProducts, newArrivals, REVIEW_HIGHLIGHTS } from "@/lib/products";
+import {
+  CATEGORIES,
+  featuredProducts,
+  newArrivals,
+  REVIEW_HIGHLIGHTS,
+  getProduct,
+  type Product,
+} from "@/lib/products";
+import { formatBDT, discountPct, cn } from "@/lib/utils";
 import { ProductGrid } from "@/components/boutique/ProductGrid";
 import { SectionHeading, Reveal } from "@/components/boutique/SectionHeading";
 import { RatingStars } from "@/components/boutique/RatingStars";
@@ -25,6 +33,52 @@ import { toast } from "sonner";
 import { useState } from "react";
 
 /* ───────────────────────────── Hero ───────────────────────────── */
+const HERO_PICK_IDS = ["j03", "b01", "n01", "a03"];
+const HERO_PICKS = HERO_PICK_IDS.map((id) => getProduct(id)).filter(
+  (p): p is Product => Boolean(p) && p!.stock !== "out",
+);
+
+function HeroProductTile({ product }: { product: Product }) {
+  const off = discountPct(product.price, product.originalPrice);
+  return (
+    <Link
+      to={`/product/${product.slug}`}
+      className={cn(
+        "group block overflow-hidden rounded-2xl bg-white text-left shadow-soft ring-1 ring-blush-100/80",
+        "transition-all duration-300 hover:-translate-y-1 hover:shadow-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blush-400",
+      )}
+    >
+      {/* rectangle image with rounded corners */}
+      <div className="relative aspect-[4/5] overflow-hidden bg-cream">
+        <Image
+          src={product.images[0]}
+          alt={product.name}
+          fill
+          sizes="(max-width: 640px) 45vw, 200px"
+          className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.06]"
+        />
+        {off !== null && (
+          <span className="absolute left-2.5 top-2.5 rounded-full bg-blush-600 px-2 py-0.5 text-[10px] font-bold tracking-wide text-white shadow-sm">
+            −{off}%
+          </span>
+        )}
+      </div>
+      {/* name + price */}
+      <div className="px-3 py-2.5">
+        <p className="truncate text-xs font-semibold text-charcoal transition-colors group-hover:text-blush-600 sm:text-[13px]">
+          {product.name}
+        </p>
+        <p className="mt-0.5 flex items-baseline gap-1.5">
+          <span className="text-[13px] font-bold text-blush-600 sm:text-sm">{formatBDT(product.price)}</span>
+          {product.originalPrice && (
+            <span className="text-[11px] text-stone-gray line-through">{formatBDT(product.originalPrice)}</span>
+          )}
+        </p>
+      </div>
+    </Link>
+  );
+}
+
 function Hero() {
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-blush-50 via-ivory to-ivory">
@@ -85,41 +139,47 @@ function Hero() {
           </div>
         </motion.div>
 
-        {/* image */}
+        {/* product collage — rectangle tiles, rounded corners */}
         <motion.div
           initial={{ opacity: 0, scale: 0.96 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-          className="relative order-1 mx-auto w-full max-w-[420px] lg:order-2"
+          className="relative order-1 mx-auto w-full max-w-[400px] lg:order-2"
         >
-          <div aria-hidden className="absolute inset-x-4 -bottom-4 top-8 arch border-2 border-blush-200" />
-          <div className="relative arch overflow-hidden shadow-lift">
-            <Image
-              src="/images/brand/hero.jpg"
-              alt="Woman wearing a blush silk blouse with delicate gold-tone jewelry — Joba's Closet editorial"
-              width={864}
-              height={1152}
-              priority
-              className="h-auto w-full object-cover"
-            />
+          {/* soft backdrop panel */}
+          <div aria-hidden className="absolute -inset-x-3 top-8 -bottom-2 rounded-[2.5rem] bg-blush-100/60 sm:-inset-x-5 sm:top-10 sm:-bottom-4" />
+
+          <div className="relative grid grid-cols-2 gap-3 sm:gap-4">
+            {/* left column */}
+            <div className="flex flex-col gap-3 sm:gap-4">
+              {HERO_PICKS[0] && <HeroProductTile product={HERO_PICKS[0]} />}
+              {HERO_PICKS[1] && <HeroProductTile product={HERO_PICKS[1]} />}
+            </div>
+            {/* right column — staggered down for an editorial feel */}
+            <div className="flex flex-col gap-3 pt-6 sm:gap-4 sm:pt-10">
+              {HERO_PICKS[2] && <HeroProductTile product={HERO_PICKS[2]} />}
+              {HERO_PICKS[3] && <HeroProductTile product={HERO_PICKS[3]} />}
+            </div>
           </div>
+
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.5 }}
-            className="absolute -left-3 bottom-10 rounded-2xl bg-white/95 px-4 py-3 shadow-soft backdrop-blur sm:-left-8"
+            className="absolute -left-2 bottom-0 rounded-full bg-white/95 py-1.5 pl-3.5 pr-4 shadow-soft backdrop-blur sm:-left-4"
           >
-            <p className="text-[11px] font-semibold uppercase tracking-wider text-stone-gray">Starting from</p>
-            <p className="font-serif text-2xl font-semibold text-blush-600">৳100</p>
+            <p className="whitespace-nowrap text-[11px] font-medium text-charcoal-soft sm:text-xs">
+              Starting from <span className="font-serif text-sm font-bold text-blush-600 sm:text-base">৳100</span>
+            </p>
           </motion.div>
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.65, duration: 0.5 }}
-            className="absolute -right-2 top-8 flex items-center gap-2 rounded-full bg-white/95 py-2 pl-2.5 pr-4 shadow-soft backdrop-blur sm:-right-5"
+            className="absolute -right-1 top-0 flex items-center gap-1.5 rounded-full bg-white/95 py-1 pl-2 pr-2.5 shadow-soft backdrop-blur sm:-right-4 sm:top-4 sm:gap-2 sm:py-2 sm:pl-2.5 sm:pr-4"
           >
             <RatingStars rating={4.8} size={13} />
-            <span className="text-xs font-semibold text-charcoal-soft">Loved by our girls</span>
+            <span className="whitespace-nowrap text-[10px] font-semibold text-charcoal-soft sm:text-xs">Loved by our girls</span>
           </motion.div>
         </motion.div>
       </div>
@@ -327,7 +387,7 @@ function Reviews() {
 
 /* ───────────────────────── Social ───────────────────────── */
 function SocialSection() {
-  const strip = ["/images/brand/promo-beauty.jpg", "/images/products/necklace-1.jpg", "/images/products/presson-2.jpg", "/images/brand/promo-jewelry.jpg", "/images/products/handbag-1.jpg", "/images/products/candle-1.jpg"];
+  const strip = ["/images/brand/promo-beauty.jpg", "/images/products/necklace-1.jpg", "/images/products/presson-1.jpg", "/images/brand/promo-jewelry.jpg", "/images/products/handbag-1.jpg", "/images/products/candle-1.jpg"];
   return (
     <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 md:py-20">
       <SectionHeading

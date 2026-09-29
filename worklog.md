@@ -47,3 +47,20 @@ Stage Summary:
 - Deliverable: full account system — register/login/logout, session cookies, profile & password management, automatic order linking and in-account order history — layered on the existing boutique without breaking guest COD checkout.
 - Key files: `prisma/schema.prisma`, `src/lib/auth-server.ts`, `src/lib/auth.tsx`, `src/app/api/auth/*` (7 routes), `src/app/api/orders/route.ts`, `src/components/account/*` (3), `src/components/views/AccountView.tsx`, `src/components/views/CheckoutView.tsx`, `src/components/boutique/Header.tsx`, `src/components/AppShell.tsx`.
 - Security posture: scrypt+salt hashes, httpOnly session cookie, server-side session revocation (password change kills other devices), no account enumeration, server-side validation everywhere, prices still computed server-side.
+
+---
+Task ID: 3
+Agent: Super Z (main agent)
+Task: Hero redesign — remove the model picture and feature real site products as rectangle tiles with rounded corners.
+
+Work Log:
+- Replaced the arch-shaped model photo (`/images/brand/hero.jpg`) in `HomeView` Hero with a staggered 2-column collage of 4 shoppable tiles (bestsellers across 4 categories): j03 Butterfly Necklace, b01 Velvet Matte Lipstick, n01 Press-On Nails, a03 Mini Elegance Handbag.
+- New `HeroProductTile` component: rectangle `aspect-[4/5]` image in `rounded-2xl` white card with ring, discount badge, truncated name + BDT price (strikethrough original), hover lift + image zoom, links to product page, focus-visible ring.
+- Kept brand charm: "Loved by our girls" rating pill (top-right) and "Starting from ৳100" compact pill (bottom-left) float in the whitespace pockets created by the column stagger; right column offset pt-6/sm:pt-10.
+- Fixed pill covering lipstick card info by converting the "Starting from" card into a slim one-line pill that sits in the stagger gap band.
+- Image quality: n01 primary image swapped presson-4 (embedded stock credit text visible at hero scale) → presson-2 (clean French tips); presson-4 kept as secondary gallery image; social strip deduped (presson-2 → presson-1).
+- Verified: lint clean, dev.log clean, desktop + iPhone 14 screenshots (stagger, floating pills, no overlaps), hero tile click → product detail navigation, n01 product page renders new primary image.
+
+Stage Summary:
+- Hero right column is now a shoppable product collage: 4 rectangle tiles with rounded corners, discount badges, names and prices, staggered editorial layout with floating rating/price pills.
+- Files touched: `src/components/views/HomeView.tsx` (Hero + HeroProductTile), `src/lib/products.ts` (n01 images), social strip image swap in HomeView.

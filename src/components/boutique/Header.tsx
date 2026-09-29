@@ -2,10 +2,11 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { Heart, Menu, Search, ShoppingBag, User, ChevronDown, X } from "lucide-react";
+import { Heart, LogIn, LogOut, Menu, Package, Search, ShoppingBag, User, ChevronDown, X } from "lucide-react";
 import { Link, useRouter } from "@/lib/router";
 import { CATEGORIES } from "@/lib/products";
 import { useShop, useHasMounted, cartCount } from "@/lib/store";
+import { useAuth, initials } from "@/lib/auth";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
@@ -15,6 +16,15 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { toast } from "sonner";
 
 const NAV = [
   { label: "Home", to: "/" },
@@ -119,8 +129,15 @@ export function Header({ onOpenSearch }: { onOpenSearch: () => void }) {
   const mounted = useHasMounted();
   const cart = useShop((s) => s.cart);
   const wishlist = useShop((s) => s.wishlist);
+  const { user, loading: authLoading, logout } = useAuth();
   const count = mounted ? cartCount(cart) : 0;
   const wishCount = mounted ? wishlist.length : 0;
+
+  const signOut = async () => {
+    await logout();
+    toast("You have been signed out. See you soon!");
+    if (path.startsWith("/account")) navigate("/account");
+  };
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -213,7 +230,9 @@ export function Header({ onOpenSearch }: { onOpenSearch: () => void }) {
                   <div className="my-4 h-px bg-blush-100" />
                   <nav className="flex flex-col" aria-label="Mobile secondary">
                     {[
-                      { label: "Account", to: "/account", icon: User },
+                      user
+                        ? { label: "My Account", to: "/account", icon: User }
+                        : { label: "Sign In / Register", to: "/account", icon: LogIn },
                       { label: `Wishlist${wishCount ? ` (${wishCount})` : ""}`, to: "/wishlist", icon: Heart },
                       { label: "Contact Us", to: "/contact", icon: X },
                     ].map((n) => (
@@ -226,6 +245,18 @@ export function Header({ onOpenSearch }: { onOpenSearch: () => void }) {
                         <n.icon className="size-4 text-rosegold" /> {n.label}
                       </Link>
                     ))}
+                    {user && (
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setMobileOpen(false);
+                          signOut();
+                        }}
+                        className="flex items-center gap-3 rounded-xl px-4 py-3 text-left text-[15px] font-medium text-charcoal transition hover:bg-blush-100"
+                      >
+                        <LogOut className="size-4 text-rosegold" /> Sign Out
+                      </button>
+                    )}
                   </nav>
                   <p className="mt-auto px-4 pb-2 pt-6 text-xs leading-relaxed text-stone-gray">
                     Affordable beauty &amp; style, starting from ৳100.
@@ -322,9 +353,65 @@ export function Header({ onOpenSearch }: { onOpenSearch: () => void }) {
               </IconLink>
             </div>
             <div className="hidden sm:block">
-              <IconLink to="/account" label="Account">
-                <User className="size-5" />
-              </IconLink>
+              {authLoading ? (
+                <span className="grid size-10 place-items-center rounded-full" aria-hidden>
+                  <User className="size-5 text-charcoal/40" />
+                </span>
+              ) : user ? (
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <button
+                      type="button"
+                      aria-label="Account menu"
+                      className="relative grid size-10 place-items-center rounded-full transition hover:bg-blush-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blush-300"
+                    >
+                      <span className="grid size-7 place-items-center rounded-full bg-blush-600 text-[11px] font-bold text-white">
+                        {initials(user.name)}
+                      </span>
+                    </button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end" className="w-60 rounded-2xl border-blush-100 p-2">
+                    <DropdownMenuLabel className="px-2 py-1.5">
+                      <span className="block truncate text-sm font-semibold text-charcoal">
+                        {user.name}
+                      </span>
+                      <span className="block truncate text-xs font-normal text-stone-gray">
+                        {user.email}
+                      </span>
+                    </DropdownMenuLabel>
+                    <DropdownMenuSeparator className="bg-blush-100" />
+                    <DropdownMenuItem asChild className="rounded-xl">
+                      <Link to="/account" className="cursor-pointer">
+                        <User className="mr-2 size-4 text-rosegold" /> My Account
+                      </Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem asChild className="rounded-xl">
+                      <Link to="/account" className="cursor-pointer">
+                        <Package className="mr-2 size-4 text-rosegold" /> My Orders
+                      </Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem asChild className="rounded-xl">
+                      <Link to="/wishlist" className="cursor-pointer">
+                        <Heart className="mr-2 size-4 text-rosegold" /> Wishlist
+                      </Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuSeparator className="bg-blush-100" />
+                    <DropdownMenuItem
+                      onSelect={(e) => {
+                        e.preventDefault();
+                        signOut();
+                      }}
+                      className="cursor-pointer rounded-xl"
+                    >
+                      <LogOut className="mr-2 size-4 text-stone-gray" /> Sign Out
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              ) : (
+                <IconLink to="/account" label="Sign in">
+                  <User className="size-5" />
+                </IconLink>
+              )}
             </div>
             <IconLink to="/wishlist" label="Wishlist" count={wishCount}>
               <Heart className="size-5" />

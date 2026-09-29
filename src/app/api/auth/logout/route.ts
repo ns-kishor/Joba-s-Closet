@@ -1,0 +1,8 @@
+import { NextRequest, NextResponse } from "next/server";
+import { endSession } from "@/lib/auth-server";
+
+export async function POST(req: NextRequest) {
+  const res = NextResponse.json({ success: true });
+  await endSession(req, res);
+  return res;
+}

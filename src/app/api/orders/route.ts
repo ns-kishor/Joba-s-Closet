@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { getProduct, deliveryFor } from "@/lib/products";
+import { getSessionUser } from "@/lib/auth-server";
 
 type IncomingItem = { productId: string; qty: number };
 
@@ -75,11 +76,13 @@ export async function POST(req: NextRequest) {
   const delivery = deliveryFor(zone, subtotal);
   const total = subtotal + delivery;
 
-  // ── persist ─────────────────────────────────────────────────
+  // ── persist (attach to the signed-in account when present) ──
+  const user = await getSessionUser(req);
   try {
     const order = await db.order.create({
       data: {
         id: makeOrderId(),
+        userId: user?.id ?? null,
         customerName: name,
         phone,
         email: c.email?.trim() || null,

@@ -23,3 +23,27 @@ Stage Summary:
 - Key files: `src/components/AppShell.tsx`, `src/components/boutique/*` (9), `src/components/views/*` (11), `src/lib/{router,store,products,utils}`, `src/app/api/orders/route.ts`, `prisma/schema.prisma`, `src/app/{layout,page,globals.css,sitemap,robots}`.
 - Imagery: 99 optimized images under `public/images/` (92 search + 7 AI) + 4 brand editorials.
 - Verified: lint clean, dev.log clean, all golden paths browser-verified on desktop + mobile.
+
+---
+Task ID: 2
+Agent: Super Z (main agent)
+Task: Add account creation and login system to Joba's Closet (accounts optional, guest checkout preserved per PRD).
+
+Work Log:
+- Extended `prisma/schema.prisma` with User (unique email, optional phone, scrypt passwordHash), Session (opaque token, 30-day expiry, indexed) and optional Order.userId link (onDelete: SetNull); ran `bun run db:push`.
+- Built `src/lib/auth-server.ts`: Node crypto scrypt hash/verify (salted, timingSafeEqual), DB-backed session create/read/destroy, httpOnly `jc_session` cookie (sameSite lax, secure in prod, 30d), expired-session pruning.
+- Added API routes: `POST /api/auth/register` (validates name/email/BD-phone/password, 409 on duplicate email, auto sign-in), `POST /api/auth/login` (same message for unknown email vs wrong password — no enumeration), `POST /api/auth/logout`, `GET /api/auth/me` (guest-safe null), `PATCH /api/auth/profile` (name/phone), `POST /api/auth/password` (verifies current, revokes all other sessions), `GET /api/auth/orders` (order history, newest first).
+- Modified `POST /api/orders` to attach `userId` from the session cookie when present; guest orders remain anonymous.
+- Added `src/lib/auth.tsx` client AuthProvider (useAuth: user/loading/login/register/logout/updateProfile/changePassword), single-fetch POST helper, `initials()` helper; wired into AppShell.
+- Reworked `AccountView`: guest state shows elegant Sign In / Create Account tabs card with brand editorial side panel + guest Order-ID tracking; member state shows dashboard (avatar initials, greeting, member-since, Edit Profile / Change Password / Sign Out, order history with item thumbnails + expandable long lists, empty state, refresh) + shortcuts + tracking retained.
+- New components: `src/components/account/AuthPanel.tsx`, `OrderHistory.tsx`, `AccountDialogs.tsx` (profile + password dialogs with inline validation).
+- Header: signed-in users get initials avatar + dropdown (name/email label, My Account, My Orders, Wishlist, Sign Out); guests get Sign-in icon link; mobile sheet shows "Sign In / Register" or "My Account" + Sign Out.
+- Checkout: profile name/phone/email act as render-time fallbacks (no effects, lint-safe); "Signed in as {firstName} — your order will appear in your account" microcopy for members; guest copy unchanged.
+- Ops hiccup: dev server held a pre-schema PrismaClient (register 500, `db.user` undefined); killed stale next-server and relaunched via double-fork daemon (`scripts/daemon-dev.py`) to survive tool-session cleanup.
+- Browser-verified end-to-end (agent-browser, desktop + iPhone 14): register → dashboard; checkout prefill (name/phone/email) + signed-in microcopy; placed order JC-54GRG4 auto-linked to account (userId in DB) and rendered in order history with status/items/total; header dropdown reflects profile edits; password change → old password 401 → new password login OK; sign-out from dashboard + mobile menu; guest Order-ID tracking still works; register validation (short password, invalid email, duplicate email 409); footer push + mobile layouts; no hydration errors on reload, no server errors in dev.log. Lint clean.
+- A real human signup (k@gmail.com) occurred through the live preview during verification — UI registration confirmed working in the wild. Test accounts (probe/sadia) deleted afterwards; user data preserved.
+
+Stage Summary:
+- Deliverable: full account system — register/login/logout, session cookies, profile & password management, automatic order linking and in-account order history — layered on the existing boutique without breaking guest COD checkout.
+- Key files: `prisma/schema.prisma`, `src/lib/auth-server.ts`, `src/lib/auth.tsx`, `src/app/api/auth/*` (7 routes), `src/app/api/orders/route.ts`, `src/components/account/*` (3), `src/components/views/AccountView.tsx`, `src/components/views/CheckoutView.tsx`, `src/components/boutique/Header.tsx`, `src/components/AppShell.tsx`.
+- Security posture: scrypt+salt hashes, httpOnly session cookie, server-side session revocation (password change kills other devices), no account enumeration, server-side validation everywhere, prices still computed server-side.

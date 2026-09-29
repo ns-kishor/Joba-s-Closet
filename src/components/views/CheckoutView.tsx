@@ -2,11 +2,12 @@
 
 import { useMemo, useState } from "react";
 import Image from "next/image";
-import { Banknote, Loader2, Lock, ShieldCheck } from "lucide-react";
+import { Banknote, Loader2, Lock, ShieldCheck, Sparkles } from "lucide-react";
 import { Link, useRouter } from "@/lib/router";
 import { deliveryFor, FREE_DELIVERY_THRESHOLD } from "@/lib/products";
 import { formatBDT } from "@/lib/utils";
 import { useShop, useHasMounted, cartLines } from "@/lib/store";
+import { useAuth } from "@/lib/auth";
 import { QuantitySelector } from "@/components/boutique/QuantitySelector";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -21,6 +22,7 @@ type Errors = Partial<Record<"name" | "phone" | "address" | "city", string>>;
 export function CheckoutView() {
   const mounted = useHasMounted();
   const { cart, clearCart, setLastOrder } = useShop();
+  const { user } = useAuth();
   const lines = mounted ? cartLines(cart) : [];
   const subtotal = lines.reduce((n, l) => n + l.product.price * l.qty, 0);
 
@@ -29,6 +31,15 @@ export function CheckoutView() {
   const [errors, setErrors] = useState<Errors>({});
   const [placing, setPlacing] = useState(false);
   const { navigate } = useRouter();
+
+  /* Profile values act as inline fallbacks (render-adjust, no effects):
+     typed input always wins; profile fills the rest. */
+  const eff = {
+    ...form,
+    name: form.name || user?.name || "",
+    phone: form.phone || user?.phone || "",
+    email: form.email || user?.email || "",
+  };
 
   const delivery = useMemo(() => deliveryFor(zone, subtotal), [zone, subtotal]);
   const total = subtotal + delivery;
@@ -51,11 +62,11 @@ export function CheckoutView() {
 
   const validate = (): Errors => {
     const errs: Errors = {};
-    if (form.name.trim().length < 3) errs.name = "Please enter your full name";
-    if (!/^01[3-9]\d{8}$/.test(form.phone.replace(/[\s-]/g, "")))
+    if (eff.name.trim().length < 3) errs.name = "Please enter your full name";
+    if (!/^01[3-9]\d{8}$/.test(eff.phone.replace(/[\s-]/g, "")))
       errs.phone = "Enter a valid BD mobile number (e.g. 01712345678)";
-    if (form.address.trim().length < 10) errs.address = "Please enter your full address";
-    if (form.city.trim().length < 2) errs.city = "Please enter your city or area";
+    if (eff.address.trim().length < 10) errs.address = "Please enter your full address";
+    if (eff.city.trim().length < 2) errs.city = "Please enter your city or area";
     return errs;
   };
 
@@ -72,7 +83,7 @@ export function CheckoutView() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          customer: { ...form, zone },
+          customer: { ...eff, zone },
           items: cart.map((l) => ({ productId: l.productId, qty: l.qty })),
         }),
       });
@@ -83,10 +94,10 @@ export function CheckoutView() {
       };
       setLastOrder({
         id: order.id,
-        name: form.name,
-        phone: form.phone,
-        address: form.address,
-        city: form.city,
+        name: eff.name,
+        phone: eff.phone,
+        address: eff.address,
+        city: eff.city,
         zone,
         items: order.items,
         subtotal,
@@ -129,9 +140,17 @@ export function CheckoutView() {
     <div className="mx-auto max-w-7xl px-4 pb-16 pt-8 sm:px-6 md:pt-12">
       <header className="text-center">
         <h1 className="font-serif text-4xl text-charcoal md:text-5xl">Checkout</h1>
-        <p className="mt-2 text-sm text-muted-foreground">
-          Guest checkout — no account needed. We&rsquo;ll call to confirm your order.
-        </p>
+        {user ? (
+          <p className="mt-2 flex flex-wrap items-center justify-center gap-1.5 text-sm text-muted-foreground">
+            <Sparkles className="size-4 text-rosegold" aria-hidden />
+            Signed in as <strong className="text-charcoal">{user.name.split(" ")[0]}</strong> — your order
+            will appear in your account.
+          </p>
+        ) : (
+          <p className="mt-2 text-sm text-muted-foreground">
+            Guest checkout — no account needed. We&rsquo;ll call to confirm your order.
+          </p>
+        )}
       </header>
 
       <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_380px] lg:gap-12">
@@ -144,7 +163,7 @@ export function CheckoutView() {
                 "name",
                 <>
                   <Label htmlFor="name" className="text-charcoal-soft">Full Name *</Label>
-                  <Input id="name" value={form.name} onChange={set("name")} placeholder="e.g. Nusrat Jahan" className="border-blush-200 focus-visible:ring-blush-300" />
+                  <Input id="name" value={eff.name} onChange={set("name")} placeholder="e.g. Nusrat Jahan" className="border-blush-200 focus-visible:ring-blush-300" />
                 </>,
                 "name",
               )}
@@ -152,7 +171,7 @@ export function CheckoutView() {
                 "phone",
                 <>
                   <Label htmlFor="phone" className="text-charcoal-soft">Phone Number *</Label>
-                  <Input id="phone" inputMode="tel" value={form.phone} onChange={set("phone")} placeholder="01XXXXXXXXX" className="border-blush-200 focus-visible:ring-blush-300" />
+                  <Input id="phone" inputMode="tel" value={eff.phone} onChange={set("phone")} placeholder="01XXXXXXXXX" className="border-blush-200 focus-visible:ring-blush-300" />
                 </>,
                 "phone",
               )}
@@ -160,7 +179,7 @@ export function CheckoutView() {
                 <Label htmlFor="email" className="text-charcoal-soft">
                   Email Address <span className="text-stone-gray">(optional)</span>
                 </Label>
-                <Input id="email" type="email" value={form.email} onChange={set("email")} placeholder="you@example.com" className="border-blush-200 focus-visible:ring-blush-300" />
+                <Input id="email" type="email" value={eff.email} onChange={set("email")} placeholder="you@example.com" className="border-blush-200 focus-visible:ring-blush-300" />
               </div>
               <div className="sm:col-span-2">
                 {field(

@@ -1,5 +1,6 @@
 // Joba's Closet — orders are persisted so they can be confirmed, tracked
 // and (in future) managed from an admin system. No admin panel yet by design.
+// Accounts are optional: orders may belong to a registered User or a guest.
 generator client {
   provider = "prisma-client-js"
 }
@@ -9,8 +10,33 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model User {
+  id           String    @id @default(cuid())
+  name         String
+  email        String    @unique
+  phone        String?
+  passwordHash String
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  sessions     Session[]
+  orders       Order[]
+}
+
+model Session {
+  id        String   @id // opaque random token, stored in an httpOnly cookie
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+  @@index([expiresAt])
+}
+
 model Order {
   id           String      @id // e.g. JC-4F7K2M
+  userId       String?
+  user         User?       @relation(fields: [userId], references: [id], onDelete: SetNull)
   customerName String
   phone        String
   email        String?
@@ -25,6 +51,8 @@ model Order {
   total        Float
   createdAt    DateTime    @default(now())
   items        OrderItem[]
+
+  @@index([userId])
 }
 
 model OrderItem {

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { RouterProvider, useRouter } from "@/lib/router";
 import { getProduct } from "@/lib/products";
+import { AuthProvider } from "@/lib/auth";
 import { AnnouncementBar } from "@/components/boutique/AnnouncementBar";
 import { Header } from "@/components/boutique/Header";
 import { MobileBottomNav } from "@/components/boutique/MobileBottomNav";
@@ -90,14 +91,16 @@ export default function AppShell() {
 
   return (
     <RouterProvider>
-      <div className="flex min-h-screen flex-col bg-ivory">
-        <AnnouncementBar />
-        <Header onOpenSearch={() => setSearchOpen(true)} />
-        <ViewSwitch />
-        <Footer />
-        <MobileBottomNav />
-        <SearchOverlay open={searchOpen} onClose={() => setSearchOpen(false)} />
-      </div>
+      <AuthProvider>
+        <div className="flex min-h-screen flex-col bg-ivory">
+          <AnnouncementBar />
+          <Header onOpenSearch={() => setSearchOpen(true)} />
+          <ViewSwitch />
+          <Footer />
+          <MobileBottomNav />
+          <SearchOverlay open={searchOpen} onClose={() => setSearchOpen(false)} />
+        </div>
+      </AuthProvider>
     </RouterProvider>
   );
 }

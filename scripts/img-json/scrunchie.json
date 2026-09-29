@@ -1,0 +1,37 @@
+{
+  "success": true,
+  "query": "satin scrunchies hair ties product photography pastel",
+  "count": 4,
+  "ranked": false,
+  "captioned_count": 0,
+  "results": [
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/6a2c4f6dfa2a.jpg",
+      "caption": "",
+      "source": "Pinterest",
+      "original_width": "675px",
+      "original_height": "1200px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/ce363bc6813f.jpg",
+      "caption": "",
+      "source": "eBay",
+      "original_width": "1600px",
+      "original_height": "1600px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/dcde02696133.png",
+      "caption": "",
+      "source": "Ruby Scrunchie Co",
+      "original_width": "2380px",
+      "original_height": "2380px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/8cf6b3f80c12.jpg",
+      "caption": "",
+      "source": "Hair Drama Company",
+      "original_width": "1000px",
+      "original_height": "1000px"
+    }
+  ]
+}

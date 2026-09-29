@@ -1,0 +1,37 @@
+{
+  "success": true,
+  "query": "gold anklet bracelet jewelry product photography",
+  "count": 4,
+  "ranked": false,
+  "captioned_count": 0,
+  "results": [
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/f019c0011047.jpg",
+      "caption": "",
+      "source": "Alibaba",
+      "original_width": "1200px",
+      "original_height": "1200px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/fb475c9bea50.jpg",
+      "caption": "",
+      "source": "Kino na hranici",
+      "original_width": "1000px",
+      "original_height": "1000px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/e3269167d81a.jpg",
+      "caption": "",
+      "source": "Amazon.in",
+      "original_width": "1090px",
+      "original_height": "1100px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/b023693f80c0.jpg",
+      "caption": "",
+      "source": "GetNameNecklace",
+      "original_width": "2000px",
+      "original_height": "2000px"
+    }
+  ]
+}

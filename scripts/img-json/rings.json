@@ -1,0 +1,37 @@
+{
+  "success": true,
+  "query": "dainty gold rings jewelry product photography flat lay",
+  "count": 4,
+  "ranked": false,
+  "captioned_count": 0,
+  "results": [
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/d15476eda45e.jpg",
+      "caption": "",
+      "source": "HYOU Fine Jewelry",
+      "original_width": "1080px",
+      "original_height": "1080px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/ddbe2cbcd50c.jpg",
+      "caption": "",
+      "source": "Danique Jewelry",
+      "original_width": "958px",
+      "original_height": "958px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/036689df94e4.png",
+      "caption": "",
+      "source": "Le Serey",
+      "original_width": "1080px",
+      "original_height": "1080px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/6782e098afbe.png",
+      "caption": "",
+      "source": "Baby Gold",
+      "original_width": "1500px",
+      "original_height": "1500px"
+    }
+  ]
+}

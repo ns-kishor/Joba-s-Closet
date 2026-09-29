@@ -1,0 +1,37 @@
+{
+  "success": true,
+  "query": "pink lipstick makeup product photography pastel background",
+  "count": 4,
+  "ranked": false,
+  "captioned_count": 0,
+  "results": [
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/357d645ce94f.jpg",
+      "caption": "",
+      "source": "Dreamstime",
+      "original_width": "1600px",
+      "original_height": "987px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/7ebcf037eb2e.jpg",
+      "caption": "",
+      "source": "123RF",
+      "original_width": "1300px",
+      "original_height": "866px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/c9640f6ead71.jpg",
+      "caption": "",
+      "source": "Alamy",
+      "original_width": "975px",
+      "original_height": "1390px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/a8316e939349.jpg",
+      "caption": "",
+      "source": "Marie Claire",
+      "original_width": "1920px",
+      "original_height": "1080px"
+    }
+  ]
+}

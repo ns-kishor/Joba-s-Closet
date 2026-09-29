@@ -1,0 +1,37 @@
+{
+  "success": true,
+  "query": "hair clips claw accessories product photography pastel",
+  "count": 4,
+  "ranked": false,
+  "captioned_count": 0,
+  "results": [
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/9d38a975db4d.jpg",
+      "caption": "",
+      "source": "Amazon.com",
+      "original_width": "1000px",
+      "original_height": "964px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/728f716ea187.jpg",
+      "caption": "",
+      "source": "Blissfully Bookish",
+      "original_width": "1080px",
+      "original_height": "1350px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/01ed1421d750.jpg",
+      "caption": "",
+      "source": "Amazon.com",
+      "original_width": "1000px",
+      "original_height": "1000px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/1d5379bc7cf9.png",
+      "caption": "",
+      "source": "Mermade Hair",
+      "original_width": "2048px",
+      "original_height": "2048px"
+    }
+  ]
+}

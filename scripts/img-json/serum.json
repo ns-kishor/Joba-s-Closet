@@ -1,0 +1,37 @@
+{
+  "success": true,
+  "query": "skincare serum bottle product photography minimal aesthetic",
+  "count": 4,
+  "ranked": false,
+  "captioned_count": 0,
+  "results": [
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/b588e6a818a3.jpeg",
+      "caption": "",
+      "source": "Pexels",
+      "original_width": "4000px",
+      "original_height": "6000px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/1aea95f33902.jpg",
+      "caption": "",
+      "source": "OMS Photo",
+      "original_width": "2500px",
+      "original_height": "1667px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/e7dd074141a4.jpg",
+      "caption": "",
+      "source": "Alamy",
+      "original_width": "1300px",
+      "original_height": "956px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/d181d6706489.jpg",
+      "caption": "",
+      "source": "Product Photography for Skincare, Beauty & Wellness Brands",
+      "original_width": "2000px",
+      "original_height": "1175px"
+    }
+  ]
+}

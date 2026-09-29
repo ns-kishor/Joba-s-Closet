@@ -1,0 +1,37 @@
+{
+  "success": true,
+  "query": "makeup brushes set product photography pink aesthetic",
+  "count": 4,
+  "ranked": false,
+  "captioned_count": 0,
+  "results": [
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/1b2593a8b97b.jpg",
+      "caption": "",
+      "source": "Dreamstime",
+      "original_width": "1205px",
+      "original_height": "1690px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/ea59ffa86d42.jpg",
+      "caption": "",
+      "source": "Real Techniques",
+      "original_width": "1000px",
+      "original_height": "1000px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/5af73d612234.png",
+      "caption": "",
+      "source": "slmissglambeauty.com",
+      "original_width": "1145px",
+      "original_height": "1373px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/e7e1aad541af.jpg",
+      "caption": "",
+      "source": "slmissglambeauty.com",
+      "original_width": "1080px",
+      "original_height": "1920px"
+    }
+  ]
+}

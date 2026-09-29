@@ -1,0 +1,37 @@
+{
+  "success": true,
+  "query": "vanity mirror product photography aesthetic",
+  "count": 4,
+  "ranked": false,
+  "captioned_count": 0,
+  "results": [
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/8d3cf1e63e4b.png",
+      "caption": "",
+      "source": "Moon Mirror",
+      "original_width": "1536px",
+      "original_height": "1024px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/4c884c4276c5.jpg",
+      "caption": "",
+      "source": "House Beautiful",
+      "original_width": "1051px",
+      "original_height": "1575px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/0000ca0bbf3b.jpg",
+      "caption": "",
+      "source": "Veranda",
+      "original_width": "2025px",
+      "original_height": "2026px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/7b40c2aee9c7.jpg",
+      "caption": "",
+      "source": "wit & whimsy",
+      "original_width": "1536px",
+      "original_height": "2048px"
+    }
+  ]
+}

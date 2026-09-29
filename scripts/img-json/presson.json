@@ -1,0 +1,37 @@
+{
+  "success": true,
+  "query": "press on nails set product photography",
+  "count": 4,
+  "ranked": false,
+  "captioned_count": 0,
+  "results": [
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/7c7eeff0c302.jpg",
+      "caption": "",
+      "source": "Amazon.com",
+      "original_width": "1000px",
+      "original_height": "1000px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/e9c240590c3a.jpg",
+      "caption": "",
+      "source": "TGC Boutique",
+      "original_width": "800px",
+      "original_height": "1200px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/5fe10bf5b350.jpg",
+      "caption": "",
+      "source": "Reddit",
+      "original_width": "3196px",
+      "original_height": "2400px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/7295b65210fa.webp",
+      "caption": "",
+      "source": "Glamnetic",
+      "original_width": "1000px",
+      "original_height": "1000px"
+    }
+  ]
+}

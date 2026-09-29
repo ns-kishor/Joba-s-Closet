@@ -1,0 +1,37 @@
+{
+  "success": true,
+  "query": "cosmetic bag pouch product photography pink",
+  "count": 4,
+  "ranked": false,
+  "captioned_count": 0,
+  "results": [
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/eb72aa8b124a.jpg",
+      "caption": "",
+      "source": "Amazon.com",
+      "original_width": "1118px",
+      "original_height": "1000px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/67d710de35a0.jpg",
+      "caption": "",
+      "source": "A-Tex Pools",
+      "original_width": "1000px",
+      "original_height": "1000px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/7b093780ffd6.jpg",
+      "caption": "",
+      "source": "Etsy",
+      "original_width": "1536px",
+      "original_height": "1024px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/5d09721c476a.jpg",
+      "caption": "",
+      "source": "Beis",
+      "original_width": "1946px",
+      "original_height": "2919px"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "success": true,
+  "query": "women sunglasses product photography beige aesthetic",
+  "count": 4,
+  "ranked": false,
+  "captioned_count": 0,
+  "results": [
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/1dbc367c6ddc.jpg",
+      "caption": "",
+      "source": "Dior",
+      "original_width": "1201px",
+      "original_height": "1800px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/8ec7b67679cb.jpg",
+      "caption": "",
+      "source": "Fifth and Ninth",
+      "original_width": "1200px",
+      "original_height": "1500px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/2e4299e57adb.jpg",
+      "caption": "",
+      "source": "The Hollywood Reporter",
+      "original_width": "1296px",
+      "original_height": "730px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/0651484886fc.jpg",
+      "caption": "",
+      "source": "dita.com",
+      "original_width": "1080px",
+      "original_height": "1920px"
+    }
+  ]
+}

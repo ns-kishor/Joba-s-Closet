@@ -1,0 +1,37 @@
+{
+  "success": true,
+  "query": "pink tumbler water bottle product photography",
+  "count": 4,
+  "ranked": false,
+  "captioned_count": 0,
+  "results": [
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/f6ccc1644f2e.jpg",
+      "caption": "",
+      "source": "eBay",
+      "original_width": "1601px",
+      "original_height": "1601px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/6a7e0c0af350.jpg",
+      "caption": "",
+      "source": "www.kleankanteen.com",
+      "original_width": "2000px",
+      "original_height": "2000px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/0c0418d2e26b.jpg",
+      "caption": "",
+      "source": "Amazon.in",
+      "original_width": "1000px",
+      "original_height": "1000px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/6181269c3ad5.jpg",
+      "caption": "",
+      "source": "İmza Aluminyum",
+      "original_width": "875px",
+      "original_height": "1600px"
+    }
+  ]
+}

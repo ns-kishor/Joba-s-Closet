@@ -1,0 +1,177 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* ── Joba's Closet brand fonts ─────────────────────────── */
+  --jc-serif: "Playfair Display", "Georgia", "Times New Roman", serif;
+  --jc-sans: "Manrope", "Segoe UI", system-ui, -apple-system, sans-serif;
+
+  /* ── Brand palette ─────────────────────────────────────── */
+  --ivory: #fdfbf8;
+  --cream: #faf4ee;
+  --blush-50: #fdf5f4;
+  --blush-100: #f9e8e7;
+  --blush-200: #f2d6d5;
+  --blush-300: #e7bcbc;
+  --blush-400: #d99ea1;
+  --blush-500: #c97f86;
+  --blush-600: #b26671;
+  --blush-700: #93515c;
+  --mauve: #97808e;
+  --nude: #e9d7c7;
+  --rosegold: #b76e79;
+  --charcoal: #2e2a2b;
+  --charcoal-soft: #4a4346;
+  --stone-gray: #8b8189;
+
+  /* ── shadcn token mapping ──────────────────────────────── */
+  --radius: 0.9rem;
+  --background: var(--ivory);
+  --foreground: var(--charcoal);
+  --card: #ffffff;
+  --card-foreground: var(--charcoal);
+  --popover: #ffffff;
+  --popover-foreground: var(--charcoal);
+  --primary: var(--blush-600);
+  --primary-foreground: #fffaf9;
+  --secondary: var(--blush-100);
+  --secondary-foreground: #6e454b;
+  --muted: #f6efe9;
+  --muted-foreground: var(--stone-gray);
+  --accent: var(--blush-100);
+  --accent-foreground: #6e454b;
+  --destructive: #c0392b;
+  --border: #efe2da;
+  --input: #e9dcd4;
+  --ring: var(--blush-400);
+  --chart-1: var(--blush-500);
+  --chart-2: var(--rosegold);
+  --chart-3: var(--mauve);
+  --chart-4: var(--nude);
+  --chart-5: var(--blush-300);
+  --sidebar: var(--cream);
+  --sidebar-foreground: var(--charcoal);
+  --sidebar-primary: var(--blush-600);
+  --sidebar-primary-foreground: #fffaf9;
+  --sidebar-accent: var(--blush-100);
+  --sidebar-accent-foreground: #6e454b;
+  --sidebar-border: #efe2da;
+  --sidebar-ring: var(--blush-400);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --font-sans: var(--jc-sans);
+  --font-serif: var(--jc-serif);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  /* brand color utilities: bg-blush-100, text-rosegold, bg-cream ... */
+  --color-ivory: var(--ivory);
+  --color-cream: var(--cream);
+  --color-blush-50: var(--blush-50);
+  --color-blush-100: var(--blush-100);
+  --color-blush-200: var(--blush-200);
+  --color-blush-300: var(--blush-300);
+  --color-blush-400: var(--blush-400);
+  --color-blush-500: var(--blush-500);
+  --color-blush-600: var(--blush-600);
+  --color-blush-700: var(--blush-700);
+  --color-mauve: var(--mauve);
+  --color-nude: var(--nude);
+  --color-rosegold: var(--rosegold);
+  --color-charcoal: var(--charcoal);
+  --color-charcoal-soft: var(--charcoal-soft);
+  --color-stone-gray: var(--stone-gray);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--jc-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection {
+    background: var(--blush-200);
+    color: var(--charcoal);
+  }
+}
+
+@layer utilities {
+  /* elegant thin scrollbar for horizontal scrollers */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .thin-scrollbar::-webkit-scrollbar {
+    height: 6px;
+    width: 6px;
+  }
+  .thin-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .thin-scrollbar::-webkit-scrollbar-thumb {
+    background: var(--blush-200);
+    border-radius: 999px;
+  }
+  .thin-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: var(--blush-300);
+  }
+
+  /* soft luxury shadow used on cards / hero imagery */
+  .shadow-soft {
+    box-shadow:
+      0 1px 2px rgba(78, 52, 58, 0.04),
+      0 12px 32px -12px rgba(78, 52, 58, 0.12);
+  }
+  .shadow-lift {
+    box-shadow:
+      0 2px 4px rgba(78, 52, 58, 0.05),
+      0 20px 44px -16px rgba(78, 52, 58, 0.18);
+  }
+
+  /* eyebrow label — small caps letterspaced */
+  .eyebrow {
+    @apply text-[11px] font-semibold uppercase tracking-[0.28em];
+  }
+
+  /* arch image mask — signature boutique shape */
+  .arch {
+    border-radius: 999px 999px 1.5rem 1.5rem;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+}

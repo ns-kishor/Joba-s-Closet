@@ -1,0 +1,37 @@
+{
+  "success": true,
+  "query": "scented candle product photography aesthetic minimal",
+  "count": 4,
+  "ranked": false,
+  "captioned_count": 0,
+  "results": [
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/759ea6bddcbe.jpg",
+      "caption": "",
+      "source": "Amazon.in",
+      "original_width": "1000px",
+      "original_height": "1000px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/da3bf876c081.jpeg",
+      "caption": "",
+      "source": "Pexels",
+      "original_width": "4000px",
+      "original_height": "6000px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/c345d70077e8.jpg",
+      "caption": "",
+      "source": "Clipping Path Service",
+      "original_width": "1500px",
+      "original_height": "857px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/b691a76aa83d.jpg",
+      "caption": "",
+      "source": "Wonderful DIY",
+      "original_width": "1080px",
+      "original_height": "1350px"
+    }
+  ]
+}

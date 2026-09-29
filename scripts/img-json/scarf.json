@@ -1,0 +1,37 @@
+{
+  "success": true,
+  "query": "silk scarf product photography flat lay pastel",
+  "count": 4,
+  "ranked": false,
+  "captioned_count": 0,
+  "results": [
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/69282d1a2ad5.jpg",
+      "caption": "",
+      "source": "eBay",
+      "original_width": "1200px",
+      "original_height": "1200px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/8a2a625a4f4c.jpg",
+      "caption": "",
+      "source": "eBay",
+      "original_width": "1600px",
+      "original_height": "1600px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/660bbe20b6a8.jpg",
+      "caption": "",
+      "source": "Glam-Aholic Lifestyle",
+      "original_width": "1200px",
+      "original_height": "1200px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/f2dd2f85d0a1.jpg",
+      "caption": "",
+      "source": "eBay",
+      "original_width": "1200px",
+      "original_height": "1200px"
+    }
+  ]
+}

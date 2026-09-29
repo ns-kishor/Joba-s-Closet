@@ -1,0 +1,37 @@
+{
+  "success": true,
+  "query": "silver chain bracelet jewelry product photography",
+  "count": 4,
+  "ranked": false,
+  "captioned_count": 0,
+  "results": [
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/8375b26415ea.jpg",
+      "caption": "",
+      "source": "Amazon.com",
+      "original_width": "1600px",
+      "original_height": "1600px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/77515832a4fa.jpg",
+      "caption": "",
+      "source": "Coco Wagner Design",
+      "original_width": "1170px",
+      "original_height": "2080px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/80d58d732b1e.jpg",
+      "caption": "",
+      "source": "Talisa Jewelry",
+      "original_width": "1200px",
+      "original_height": "1200px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/67e77c3093d3.jpg",
+      "caption": "",
+      "source": "Sheva Jewelry",
+      "original_width": "1024px",
+      "original_height": "1024px"
+    }
+  ]
+}

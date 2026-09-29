@@ -1,0 +1,37 @@
+{
+  "success": true,
+  "query": "small elegant handbag product photography beige aesthetic",
+  "count": 4,
+  "ranked": false,
+  "captioned_count": 0,
+  "results": [
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/887c7ab69f62.jpg",
+      "caption": "",
+      "source": "Amazon.in",
+      "original_width": "936px",
+      "original_height": "1000px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/e63cdaad9413.jpg",
+      "caption": "",
+      "source": "ELLE",
+      "original_width": "1200px",
+      "original_height": "900px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/44ee515dc809.jpg",
+      "caption": "",
+      "source": "Live Like It's the Weekend",
+      "original_width": "1200px",
+      "original_height": "923px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/e24f1fcb3564.jpg",
+      "caption": "",
+      "source": "eBay",
+      "original_width": "870px",
+      "original_height": "1200px"
+    }
+  ]
+}

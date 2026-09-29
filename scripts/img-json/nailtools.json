@@ -1,0 +1,37 @@
+{
+  "success": true,
+  "query": "nail art tools accessories product photography",
+  "count": 4,
+  "ranked": false,
+  "captioned_count": 0,
+  "results": [
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/475850620fc3.jpg",
+      "caption": "",
+      "source": "Amazon.com",
+      "original_width": "894px",
+      "original_height": "939px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/e5f86c787e42.jpg",
+      "caption": "",
+      "source": "eBay",
+      "original_width": "901px",
+      "original_height": "1200px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/b688973137af.webp",
+      "caption": "",
+      "source": "Glamnetic",
+      "original_width": "1000px",
+      "original_height": "1000px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/c0239fca3c72.jpg",
+      "caption": "",
+      "source": "Shills Professional",
+      "original_width": "4500px",
+      "original_height": "4500px"
+    }
+  ]
+}

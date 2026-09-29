@@ -1,0 +1,37 @@
+{
+  "success": true,
+  "query": "pearl jewelry set necklace earrings product photography",
+  "count": 4,
+  "ranked": false,
+  "captioned_count": 0,
+  "results": [
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/1dcea9351a9e.jpg",
+      "caption": "",
+      "source": "eBay",
+      "original_width": "1200px",
+      "original_height": "1200px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/eaf658640c05.jpg",
+      "caption": "",
+      "source": "eBay",
+      "original_width": "1000px",
+      "original_height": "1200px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/2241f71520f4.jpg",
+      "caption": "",
+      "source": "Atelier Elise",
+      "original_width": "800px",
+      "original_height": "1000px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/e21d94d03fca.jpg",
+      "caption": "",
+      "source": "Atelier Elise",
+      "original_width": "800px",
+      "original_height": "1000px"
+    }
+  ]
+}

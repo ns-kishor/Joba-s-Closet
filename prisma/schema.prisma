@@ -1,0 +1,41 @@
+// Joba's Closet — orders are persisted so they can be confirmed, tracked
+// and (in future) managed from an admin system. No admin panel yet by design.
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Order {
+  id           String      @id // e.g. JC-4F7K2M
+  customerName String
+  phone        String
+  email        String?
+  address      String
+  city         String
+  note         String?
+  zone         String // "inside" | "outside"
+  payment      String      @default("cod")
+  status       String      @default("confirmed")
+  subtotal     Float
+  delivery     Float
+  total        Float
+  createdAt    DateTime    @default(now())
+  items        OrderItem[]
+}
+
+model OrderItem {
+  id        String   @id @default(cuid())
+  orderId   String
+  productId String
+  name      String
+  price     Float
+  qty       Int
+  image     String
+  order     Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+
+  @@index([orderId])
+}

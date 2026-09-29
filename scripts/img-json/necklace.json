@@ -1,0 +1,37 @@
+{
+  "success": true,
+  "query": "dainty gold necklace pendant product photography",
+  "count": 4,
+  "ranked": false,
+  "captioned_count": 0,
+  "results": [
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/da74e98dce36.jpg",
+      "caption": "",
+      "source": "Lulus",
+      "original_width": "750px",
+      "original_height": "1125px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/22c449836bf0.jpg",
+      "caption": "",
+      "source": "Amazon.com",
+      "original_width": "949px",
+      "original_height": "1000px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/6849cc9255a5.jpg",
+      "caption": "",
+      "source": "kr.pinterest.com",
+      "original_width": "736px",
+      "original_height": "1104px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/35bd6b554771.jpg",
+      "caption": "",
+      "source": "Amazon.com",
+      "original_width": "1000px",
+      "original_height": "1000px"
+    }
+  ]
+}

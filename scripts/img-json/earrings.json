@@ -1,0 +1,37 @@
+{
+  "success": true,
+  "query": "gold hoop earrings jewelry product photography",
+  "count": 4,
+  "ranked": false,
+  "captioned_count": 0,
+  "results": [
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/06681c6ef8ee.jpg",
+      "caption": "",
+      "source": "Amazon.com",
+      "original_width": "1000px",
+      "original_height": "1000px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/3fdf53b78f4f.jpg",
+      "caption": "",
+      "source": "Mejuri",
+      "original_width": "1007px",
+      "original_height": "1007px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/a08040157bba.jpg",
+      "caption": "",
+      "source": "eBay",
+      "original_width": "1000px",
+      "original_height": "1000px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/07c6e5108119.jpg",
+      "caption": "",
+      "source": "Dana Rebecca Designs",
+      "original_width": "1400px",
+      "original_height": "1000px"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "success": true,
+  "query": "lip gloss tube product photography pink aesthetic",
+  "count": 4,
+  "ranked": false,
+  "captioned_count": 0,
+  "results": [
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/4032be579738.jpg",
+      "caption": "",
+      "source": "Somewang",
+      "original_width": "920px",
+      "original_height": "920px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/ac06ee358b8e.jpg",
+      "caption": "",
+      "source": "Refinery29",
+      "original_width": "2000px",
+      "original_height": "2400px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/b8d89b555353.jpg",
+      "caption": "",
+      "source": "Etsy",
+      "original_width": "1370px",
+      "original_height": "1512px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/43d3f8276d34.jpg",
+      "caption": "",
+      "source": "Pixora",
+      "original_width": "1024px",
+      "original_height": "768px"
+    }
+  ]
+}

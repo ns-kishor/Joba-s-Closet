@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
-import { getSessionUser, toSafeUser } from "@/lib/auth-server";
+import { getSessionUser, toSafeUser, SESSION_COOKIE, newSessionToken } from "@/lib/auth-server";
 
 type Body = { name?: string; phone?: string };
 
@@ -36,7 +36,26 @@ export async function PATCH(req: NextRequest) {
       where: { id: current.id },
       data: { name, phone: phone || null },
     });
-    return NextResponse.json({ success: true, user: toSafeUser(user) });
+    const safeUser = toSafeUser(user);
+    const res = NextResponse.json({ success: true, user: safeUser });
+
+    // Update the session cookie payload so changes persist across Lambdas
+    try {
+      const raw = req.cookies.get(SESSION_COOKIE)?.value;
+      const token = raw?.split(".")[0] || newSessionToken();
+      const payload = Buffer.from(JSON.stringify(safeUser)).toString("base64url");
+      res.cookies.set(SESSION_COOKIE, `${token}.${payload}`, {
+        httpOnly: true,
+        sameSite: "lax",
+        secure: process.env.NODE_ENV === "production",
+        path: "/",
+        maxAge: 30 * 24 * 60 * 60,
+      });
+    } catch {
+      // non-fatal
+    }
+
+    return res;
   } catch (e) {
     console.error("profile update failed", e);
     return NextResponse.json({ success: false, error: "Could not update profile" }, { status: 500 });

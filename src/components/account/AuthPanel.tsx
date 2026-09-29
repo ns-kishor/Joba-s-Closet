@@ -108,6 +108,25 @@ export function AuthPanel({ initialTab = "signin" }: { initialTab?: "signin" | "
               Sign in to see your orders, saved favorites and a faster checkout.
             </p>
             <form onSubmit={onSignIn} className="mt-6 space-y-4" noValidate>
+              <div className="flex items-center justify-between rounded-2xl border border-blush-200/80 bg-blush-50/70 p-3 text-xs text-charcoal">
+                <div>
+                  <span className="font-semibold text-blush-800">Demo Account:</span>
+                  <div className="mt-0.5 text-muted-foreground font-mono text-[11px]">demo@jobascloset.com &bull; 123456</div>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => {
+                    const emailInput = document.getElementById("si-email") as HTMLInputElement | null;
+                    const pwInput = document.getElementById("si-password") as HTMLInputElement | null;
+                    if (emailInput) emailInput.value = "demo@jobascloset.com";
+                    if (pwInput) pwInput.value = "123456";
+                  }}
+                  className="rounded-full border border-blush-300 bg-white px-3 py-1 font-medium text-blush-700 shadow-xs hover:bg-blush-100 transition-colors"
+                >
+                  Auto Fill
+                </button>
+              </div>
+
               <div className="space-y-1.5">
                 <Label htmlFor="si-email" className="text-charcoal-soft">Email Address</Label>
                 <Input

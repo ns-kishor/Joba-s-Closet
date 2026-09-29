@@ -45,12 +45,45 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    const passwordHash = hashPassword(password);
     const user = await db.user.create({
-      data: { name, email, phone: phone || null, passwordHash: hashPassword(password) },
+      data: { name, email, phone: phone || null, passwordHash },
     });
 
     const res = NextResponse.json({ success: true, user: toSafeUser(user) });
     await startSession(res, user.id);
+
+    // Save to user vault cookie so login works across serverless restarts
+    try {
+      const rawVault = req.cookies.get("jc_vault")?.value;
+      let vault: Array<{
+        id: string;
+        name: string;
+        email: string;
+        phone: string | null;
+        passwordHash: string;
+      }> = [];
+      if (rawVault) {
+        vault = JSON.parse(Buffer.from(rawVault, "base64url").toString("utf8"));
+      }
+      vault = vault.filter((u) => u.email?.toLowerCase() !== email.toLowerCase());
+      vault.push({
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        phone: user.phone,
+        passwordHash: user.passwordHash,
+      });
+      res.cookies.set("jc_vault", Buffer.from(JSON.stringify(vault)).toString("base64url"), {
+        path: "/",
+        sameSite: "lax",
+        secure: process.env.NODE_ENV === "production",
+        maxAge: 30 * 24 * 3600,
+      });
+    } catch {
+      // non-fatal
+    }
+
     pruneSessions();
     return res;
   } catch (e) {

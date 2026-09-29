@@ -107,7 +107,7 @@ export async function POST(req: NextRequest) {
       include: { items: true },
     });
 
-    return NextResponse.json({
+    const res = NextResponse.json({
       success: true,
       order: {
         id: order.id,
@@ -130,6 +130,27 @@ export async function POST(req: NextRequest) {
         })),
       },
     });
+
+    // Save recent orders in a cookie so cross-instance serverless lookups succeed
+    try {
+      const rawCookie = req.cookies.get("jc_orders")?.value;
+      let orderList: any[] = [];
+      if (rawCookie) {
+        orderList = JSON.parse(Buffer.from(rawCookie, "base64url").toString("utf8"));
+      }
+      orderList.unshift(order);
+      if (orderList.length > 10) orderList = orderList.slice(0, 10);
+      res.cookies.set("jc_orders", Buffer.from(JSON.stringify(orderList)).toString("base64url"), {
+        path: "/",
+        sameSite: "lax",
+        secure: process.env.NODE_ENV === "production",
+        maxAge: 30 * 24 * 3600,
+      });
+    } catch {
+      // non-fatal
+    }
+
+    return res;
   } catch (e) {
     console.error("order create failed", e);
     return NextResponse.json({ success: false, error: "Could not save order" }, { status: 500 });
@@ -142,10 +163,24 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ success: false, error: "Missing id" }, { status: 400 });
   }
   try {
-    const order = await db.order.findUnique({
+    let order = await db.order.findUnique({
       where: { id: id.toUpperCase() },
       include: { items: true },
     });
+
+    if (!order) {
+      // Fallback to cookie storage
+      const rawCookie = req.cookies.get("jc_orders")?.value;
+      if (rawCookie) {
+        try {
+          const list = JSON.parse(Buffer.from(rawCookie, "base64url").toString("utf8"));
+          order = list.find((o: { id?: string }) => o.id?.toUpperCase() === id.toUpperCase());
+        } catch {
+          // ignore
+        }
+      }
+    }
+
     if (!order) {
       return NextResponse.json({ success: false, error: "Order not found" }, { status: 404 });
     }
@@ -163,7 +198,7 @@ export async function GET(req: NextRequest) {
         delivery: order.delivery,
         total: order.total,
         createdAt: order.createdAt,
-        items: order.items.map((it) => ({
+        items: order.items.map((it: any) => ({
           productId: it.productId,
           name: it.name,
           price: it.price,

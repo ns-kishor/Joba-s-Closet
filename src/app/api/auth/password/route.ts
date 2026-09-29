@@ -45,7 +45,8 @@ export async function POST(req: NextRequest) {
       data: { passwordHash: hashPassword(newPassword) },
     });
     // Security: revoke every other session, keep this one alive.
-    const token = req.cookies.get("jc_session")?.value;
+    const rawCookie = req.cookies.get("jc_session")?.value;
+    const token = rawCookie?.split(".")[0];
     await db.session.deleteMany({
       where: { userId: current.id, ...(token ? { id: { not: token } } : {}) },
     });

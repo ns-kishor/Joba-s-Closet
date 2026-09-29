@@ -20,7 +20,31 @@ export async function POST(req: NextRequest) {
   }
 
   try {
-    const user = await db.user.findUnique({ where: { email } });
+    let user = await db.user.findUnique({ where: { email } });
+
+    // If not found in current lambda memory, check the client's jc_vault cookie
+    if (!user) {
+      const rawVault = req.cookies.get("jc_vault")?.value;
+      if (rawVault) {
+        try {
+          const vault = JSON.parse(Buffer.from(rawVault, "base64url").toString("utf8"));
+          const found = vault.find((u: { email?: string }) => u.email?.toLowerCase() === email);
+          if (found) {
+            user = await db.user.create({
+              data: {
+                name: found.name,
+                email: found.email,
+                phone: found.phone,
+                passwordHash: found.passwordHash,
+              },
+            });
+          }
+        } catch {
+          // ignore
+        }
+      }
+    }
+
     // Same message for unknown email and wrong password (no account enumeration).
     if (!user || !verifyPassword(password, user.passwordHash)) {
       return NextResponse.json({ success: false, error: "Incorrect email or password" }, { status: 401 });

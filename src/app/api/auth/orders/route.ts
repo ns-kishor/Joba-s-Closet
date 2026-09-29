@@ -15,6 +15,24 @@ export async function GET(req: NextRequest) {
       orderBy: { createdAt: "desc" },
       include: { items: true },
     });
+
+    // Merge with any orders saved in cookie for serverless persistence
+    const rawCookie = req.cookies.get("jc_orders")?.value;
+    if (rawCookie) {
+      try {
+        const cookieOrders = JSON.parse(Buffer.from(rawCookie, "base64url").toString("utf8"));
+        const existingIds = new Set(orders.map((o) => o.id));
+        for (const co of cookieOrders) {
+          if ((!co.userId || co.userId === user.id) && !existingIds.has(co.id)) {
+            orders.push(co);
+            existingIds.add(co.id);
+          }
+        }
+      } catch {
+        // ignore
+      }
+    }
+
     return NextResponse.json({
       success: true,
       orders: orders.map((o) => ({
@@ -26,7 +44,7 @@ export async function GET(req: NextRequest) {
         delivery: o.delivery,
         total: o.total,
         createdAt: o.createdAt,
-        items: o.items.map((it) => ({
+        items: (o.items || []).map((it: any) => ({
           productId: it.productId,
           name: it.name,
           price: it.price,
